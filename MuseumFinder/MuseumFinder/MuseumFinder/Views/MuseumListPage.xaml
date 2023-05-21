@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MuseumFinder.ViewModels"
+             xmlns:searchHandlers="clr-namespace:MuseumFinder.SearchHandlers"
+             xmlns:model="clr-namespace:MuseumFinder.Model"
+             x:DataType="viewModels:MuseumLisPageViewModel"
+             x:Class="MuseumFinder.Views.MuseumListPage"
+             Title="MuseumListPage">
+
+        <Shell.SearchHandler>
+            <searchHandlers:MuseumSeachHandler 
+            Placeholder="Search Name"
+            ShowsResults="True"
+            QueryIcon="search"
+            ClearIcon="clear"
+            NavigationRoute="AddUpdateMuseumDetail"
+            Museums="{x:Static viewModels:MuseumLisPageViewModel.MuseumsListForSearch}">
+                <searchHandlers:MuseumSeachHandler.ItemTemplate>
+                    <DataTemplate x:DataType="model:MuseumModels">
+                        <Grid Margin="5" RowDefinitions="Auto" ColumnDefinitions="40,Auto">
+                            <Image Grid.Row="0" Grid.Column="0" Source="user" HeightRequest="35" WidthRequest="35" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </searchHandlers:MuseumSeachHandler.ItemTemplate>
+            </searchHandlers:MuseumSeachHandler>
+        </Shell.SearchHandler>
+        <VerticalStackLayout Margin="10">
+            <Label Text="Список музеев" />
+            <Button Text="Добавить музей" Command="{Binding AddUpdateMuseumCommand}" HorizontalOptions="EndAndExpand"/>
+
+            <CollectionView ItemsSource="{Binding Museums}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:MuseumModels">
+                        <Frame Margin="10" Padding="10">
+                            <StackLayout>
+                                <Image
+                                Source="{Binding Path}"
+                                HeightRequest="98"
+                                WidthRequest="98"
+                                />
+                                <HorizontalStackLayout Spacing="15">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Address}"/>
+                                    <Label Text="{Binding Rating}"/>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:MuseumLisPageViewModel}},Path=DisplayActionCommand}"
+                                              CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+   
+</ContentPage>

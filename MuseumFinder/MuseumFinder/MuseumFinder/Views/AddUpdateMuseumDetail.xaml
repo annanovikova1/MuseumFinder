@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MuseumFinder.Views.AddUpdateMuseumDetail"
+             Title="AddUpdateMuseumDetail">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="SlateGray"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView VerticalOptions="Center">
+        <StackLayout Margin="10" Spacing="15">
+            <VerticalStackLayout>
+                <Label Text="Name"  />
+                <Entry 
+                    TextColor="Green" Text="{Binding MuseumDetail.Name}" Placeholder="Название" />
+                <BoxView HeightRequest="0.8" Color="Gray" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Address"  />
+                <Entry Text="{Binding MuseumDetail.Address}" Placeholder="Адрес" />
+                <BoxView HeightRequest="0.8" Color="Gray" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Phone"/>
+                <Entry Text="{Binding MuseumDetail.Phone}" Placeholder="Номер телефона" />
+                <BoxView HeightRequest="0.8" Color="Gray" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Year"  />
+                <Entry Text="{Binding MuseumDetail.Year}" Placeholder="Год"/>
+                <BoxView HeightRequest="0.8" Color="Gray" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Latitude"  />
+                <Entry Text="{Binding MuseumDetail.Latitude}" Placeholder="Широта" />
+                <BoxView HeightRequest="0.8" Color="Gray" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Longitude"  />
+                <Entry Text="{Binding MuseumDetail.Longitude}" Placeholder="Долгота" />
+                <BoxView HeightRequest="0.8" Color="Gray" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Info"  />
+                <Editor TextColor="Green" HeightRequest="200" Text="{Binding MuseumDetail.Info}" Placeholder="Информация" />
+                <BoxView HeightRequest="0.8" Color="Gray" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Rating"  />
+                <Entry Text="{Binding MuseumDetail.Rating}" Placeholder="Рейтинг" />
+                <BoxView HeightRequest="0.8" Color="Gray" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="Path"  />
+                <Entry TextColor="Green" Text="{Binding MuseumDetail.Path}" Placeholder="Путь" />
+                <BoxView HeightRequest="0.8" Color="Gray" />
+            </VerticalStackLayout>
+
+
+            <Button Text="Save" Command="{Binding AddUpdateMuseumCommand}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
